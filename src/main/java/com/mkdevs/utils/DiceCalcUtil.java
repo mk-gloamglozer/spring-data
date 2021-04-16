@@ -1,7 +1,9 @@
-package com.mkdevs;
+package com.mkdevs.utils;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
+
+import com.mkdevs.domain.Dice;
 
 public interface DiceCalcUtil {
 	

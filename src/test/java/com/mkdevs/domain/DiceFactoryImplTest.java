@@ -1,9 +1,12 @@
-package com.mkdevs;
+package com.mkdevs.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import com.mkdevs.domain.DiceFactory;
+import com.mkdevs.domain.DiceFactoryImpl;
 
 public class DiceFactoryImplTest {
 	DiceFactory factory;

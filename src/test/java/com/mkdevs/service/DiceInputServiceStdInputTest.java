@@ -1,4 +1,4 @@
-package com.mkdevs;
+package com.mkdevs.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
@@ -13,7 +13,12 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.mkdevs.IOUtil.ErrorMessage;
+import com.mkdevs.domain.Dice;
+import com.mkdevs.io.UserIO;
+import com.mkdevs.repository.DiceRepository;
+import com.mkdevs.service.DiceInputService;
+import com.mkdevs.service.DiceInputServiceStdInput;
+import com.mkdevs.utils.IOUtil.ErrorMessage;
 
 @ExtendWith(MockitoExtension.class)
 public class DiceInputServiceStdInputTest {

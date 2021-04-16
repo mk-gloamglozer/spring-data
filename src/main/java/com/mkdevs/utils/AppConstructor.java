@@ -1,6 +1,18 @@
-package com.mkdevs;
+package com.mkdevs.utils;
 
 import java.util.Collection;
+
+import com.mkdevs.domain.Dice;
+import com.mkdevs.domain.DiceFactory;
+import com.mkdevs.domain.DiceFactoryImpl;
+import com.mkdevs.io.UserIO;
+import com.mkdevs.io.UserIOStdIO;
+import com.mkdevs.repository.DiceRepository;
+import com.mkdevs.repository.DiceRepositoryImpl;
+import com.mkdevs.service.DiceInputService;
+import com.mkdevs.service.DiceInputServiceStdInput;
+import com.mkdevs.service.DiceModificationService;
+import com.mkdevs.service.DiceModificationServiceImpl;
 
 /**
  * Wires the app together 

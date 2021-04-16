@@ -1,4 +1,4 @@
-package com.mkdevs;
+package com.mkdevs.domain;
 
 import static lombok.AccessLevel.PRIVATE;
 

@@ -1,4 +1,4 @@
-package com.mkdevs;
+package com.mkdevs.service;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
@@ -15,7 +15,13 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.mkdevs.DiceFactory.DiceType;
+import com.mkdevs.domain.Dice;
+import com.mkdevs.domain.DiceFactory;
+import com.mkdevs.domain.DiceFactory.DiceType;
+import com.mkdevs.io.UserIO;
+import com.mkdevs.repository.DiceRepository;
+import com.mkdevs.service.DiceModificationService;
+import com.mkdevs.service.DiceModificationServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
 public class DiceModificationServiceImplTest {

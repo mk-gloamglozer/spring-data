@@ -1,4 +1,6 @@
-package com.mkdevs;
+package com.mkdevs.domain;
+
+import com.mkdevs.IDable;
 
 public interface Dice extends IDable{
 	int roll();

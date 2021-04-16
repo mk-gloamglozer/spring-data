@@ -1,6 +1,8 @@
-package com.mkdevs;
+package com.mkdevs.service;
 
 import java.util.List;
+
+import com.mkdevs.domain.Dice;
 
 /**
  * Service for aquiring user input to save and remove

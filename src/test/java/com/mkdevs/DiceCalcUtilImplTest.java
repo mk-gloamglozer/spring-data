@@ -10,6 +10,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.mkdevs.domain.Dice;
+import com.mkdevs.utils.DiceCalcUtil;
+
 @ExtendWith(MockitoExtension.class)
 public class DiceCalcUtilImplTest {
 	

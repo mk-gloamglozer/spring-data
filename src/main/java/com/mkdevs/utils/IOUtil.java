@@ -1,8 +1,11 @@
-package com.mkdevs;
+package com.mkdevs.utils;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.mkdevs.IDable;
+import com.mkdevs.io.UserIO;
 
 public class IOUtil {
 	
@@ -12,7 +15,7 @@ public class IOUtil {
 	 * @param collection
 	 * @return map indexing the collection
 	 */
-	static <T> Map<Integer, T> generateNumberMap(Collection<T> collection) {
+	public static <T> Map<Integer, T> generateNumberMap(Collection<T> collection) {
 		Map<Integer, T> map = new HashMap<Integer, T>();
 		Integer count = 0;
 		for (T item: collection) {
@@ -38,7 +41,7 @@ public class IOUtil {
 	 * @param map
 	 * @return
 	 */
-	static <T extends IDable> T getIDableFomMap(Map<Integer,T> map, UserIO userIO) {
+	public static <T extends IDable> T getIDableFomMap(Map<Integer,T> map, UserIO userIO) {
 		while(true) {
 			printMapToConsole(map, userIO);
 			userIO.writeln("Enter selection number: ");
@@ -54,7 +57,7 @@ public class IOUtil {
 
 	}
 	
-	protected enum ErrorMessage{
+	public enum ErrorMessage{
 		INVALID_SELECTION("Selection invalid please try again");
 
 		private String message;

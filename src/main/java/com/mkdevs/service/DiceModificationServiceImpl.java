@@ -1,10 +1,15 @@
-package com.mkdevs;
+package com.mkdevs.service;
 
-import static com.mkdevs.IOUtil.generateNumberMap;
+import static com.mkdevs.utils.IOUtil.generateNumberMap;
 
 import java.util.Map;
 
-import com.mkdevs.DiceFactory.DiceType;
+import com.mkdevs.domain.Dice;
+import com.mkdevs.domain.DiceFactory;
+import com.mkdevs.domain.DiceFactory.DiceType;
+import com.mkdevs.io.UserIO;
+import com.mkdevs.repository.DiceRepository;
+import com.mkdevs.utils.IOUtil;
 
 import lombok.AllArgsConstructor;
 

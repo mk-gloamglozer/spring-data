@@ -1,12 +1,18 @@
-package com.mkdevs;
+package com.mkdevs.utils;
 
-import static com.mkdevs.IOUtil.generateNumberMap;
-import static com.mkdevs.IOUtil.getIDableFomMap;
+import static com.mkdevs.utils.IOUtil.generateNumberMap;
+import static com.mkdevs.utils.IOUtil.getIDableFomMap;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+
+import com.mkdevs.IDable;
+import com.mkdevs.domain.Dice;
+import com.mkdevs.io.UserIO;
+import com.mkdevs.service.DiceInputService;
+import com.mkdevs.service.DiceModificationService;
 
 import lombok.AllArgsConstructor;
 
@@ -42,11 +48,11 @@ public class FunctionCaller {
 		functionOption.doIt();
 	}
 
-	protected void addFunction(FunctionOption option) {
+	public void addFunction(FunctionOption option) {
 		this.options.add(option);
 	}
 
-	interface FunctionOption extends IDable{
+	public interface FunctionOption extends IDable{
 		void doIt();
 	}
 	

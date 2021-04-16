@@ -1,11 +1,11 @@
-package com.mkdevs;
+package com.mkdevs.io;
 
 import java.util.Scanner;
 
-class UserIOStdIO implements UserIO{
+public class UserIOStdIO implements UserIO{
 	private Scanner input;
 
-	UserIOStdIO() {
+	public UserIOStdIO() {
 		input = new Scanner(System.in);
 	}
 	

@@ -1,6 +1,6 @@
-package com.mkdevs;
+package com.mkdevs.io;
 
-interface UserIO{
+public interface UserIO{
 	Integer getIntegerInput();
 	boolean isYesInput();
 	String getStringInput();

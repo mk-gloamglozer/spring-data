@@ -1,7 +1,9 @@
-package com.mkdevs;
+package com.mkdevs.repository;
 
 import java.util.List;
 import java.util.Optional;
+
+import com.mkdevs.domain.Dice;
 
 /**
  * Stores the dice within the application
