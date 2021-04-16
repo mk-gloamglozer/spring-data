@@ -8,6 +8,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.mkdevs.IDable;
 import com.mkdevs.domain.Dice;
 import com.mkdevs.io.UserIO;
@@ -16,6 +19,7 @@ import com.mkdevs.service.DiceModificationService;
 
 import lombok.AllArgsConstructor;
 
+@Service
 @AllArgsConstructor
 public class FunctionCaller {
 	
@@ -24,7 +28,8 @@ public class FunctionCaller {
 	private UserIO userio;
 	private DiceModificationService modService;
 	private List<FunctionOption> options;
-
+	
+	@Autowired
 	public FunctionCaller(DiceInputService diceService, DiceCalcUtil calcUtil, UserIO userio,
 			DiceModificationService modService) {
 		this.diceService = diceService;

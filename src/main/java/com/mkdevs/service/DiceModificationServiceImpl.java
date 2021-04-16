@@ -4,6 +4,9 @@ import static com.mkdevs.utils.IOUtil.generateNumberMap;
 
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.mkdevs.domain.Dice;
 import com.mkdevs.domain.DiceFactory;
 import com.mkdevs.domain.DiceFactory.DiceType;
@@ -13,13 +16,17 @@ import com.mkdevs.utils.IOUtil;
 
 import lombok.AllArgsConstructor;
 
+@Service
 @AllArgsConstructor
 public class DiceModificationServiceImpl implements DiceModificationService{
 	
+	@Autowired
 	private DiceFactory diceFactory;
-	
+
+	@Autowired
 	private DiceRepository diceRepo;
 	
+	@Autowired
 	private UserIO userIO;
 	
 	@Override

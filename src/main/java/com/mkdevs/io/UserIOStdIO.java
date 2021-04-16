@@ -2,6 +2,9 @@ package com.mkdevs.io;
 
 import java.util.Scanner;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class UserIOStdIO implements UserIO{
 	private Scanner input;
 
