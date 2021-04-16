@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import com.mkdevs.domain.Dice;
@@ -18,6 +19,7 @@ import com.mkdevs.domain.Dice;
  */
 
 @Repository
+@Profile("!jpa")
 public class DiceRepositoryImpl implements DiceRepository{
 	
 	private final Map<String,Dice> diceCollection = new HashMap<String, Dice>();

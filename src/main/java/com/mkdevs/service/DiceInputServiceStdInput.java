@@ -35,7 +35,7 @@ public class DiceInputServiceStdInput implements DiceInputService {
 	public List<Dice> makeDiceSelection() {
 		inputer.writeln("Welcome! Please select a dice from the list");
 		List<Dice> diceOutList = new ArrayList<Dice>();
-		Map<Integer, Dice> diceMap = generateNumberMap(diceRepo.findAll());
+		Map<Integer, ? extends Dice> diceMap = generateNumberMap(diceRepo.findAll());
 
 		while(true) {
 			diceOutList.add(getIDableFomMap(diceMap, inputer));

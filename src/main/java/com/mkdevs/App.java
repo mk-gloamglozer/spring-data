@@ -22,53 +22,11 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @SpringBootApplication
-public class App implements CommandLineRunner 
-{
-	
-	@Autowired DiceFactory factory;
-	@Autowired DiceRepository repo;
-	@Autowired FunctionCaller caller;
+public class App  {
 
     public static void main( String[] args )
     {
     	SpringApplication.run(App.class, args);
     }
     
-    @PostConstruct
-    public void initRepo() {
-    	List.of(
-    			factory.createDice("D6", "D6"),
-    			factory.createDice("FixedD20", "D20-fixed"),
-    			factory.createDice("D20", "D20"))
-			.forEach(repo::saveDice);
-    }
-    
-    @PostConstruct
-    public void addExitFunction() {
-
-    	caller.addFunction(new FunctionOption() {
-			
-			@Override
-			public String id() {
-				return "Exit";
-			}
-			
-			@Override
-			public void doIt() {
-				System.exit(0);
-			}
-		});
-    }
-
-	@Override
-	public void run(String... args) throws Exception {
-
-    	while(true) {
-    		try {
-    			caller.askAndCall();
-    		} catch (Exception e) {
-    			log.error("the program encountered a problem and has to close", e);
-			}
-    	}
-	}
 }

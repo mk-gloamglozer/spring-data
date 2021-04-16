@@ -40,7 +40,7 @@ public class DiceModificationServiceImpl implements DiceModificationService{
 				return diceRepo.saveDice(dice).get();
 			} catch (IllegalArgumentException e) {
 				userIO.writeln("There was a problem with creating the dice: "+e.getMessage());
-				userIO.write("would you like to try again? (y/n)");
+				userIO.writeln("would you like to try again? (y/n)");
 				shouldContinue = userIO.isYesInput();
 			}
 		}
@@ -51,7 +51,7 @@ public class DiceModificationServiceImpl implements DiceModificationService{
 
 	@Override
 	public Dice removeDice() {
-		Map<Integer, Dice> availableDiceMap = generateNumberMap(diceRepo.findAll());
+		Map<Integer, ? extends Dice> availableDiceMap = generateNumberMap(diceRepo.findAll());
 		
 		boolean shouldContinue = true;
 
@@ -61,7 +61,7 @@ public class DiceModificationServiceImpl implements DiceModificationService{
 	}
 
 	private String getNameFromUser() {
-		userIO.write("Name for the new dice: ");
+		userIO.writeln("Name for the new dice: ");
 		return userIO.getStringInput();
 	}
 }

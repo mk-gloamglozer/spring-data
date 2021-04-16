@@ -4,15 +4,30 @@ import static lombok.AccessLevel.PRIVATE;
 
 import java.util.Random;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-@AllArgsConstructor(access = PRIVATE)
-public class BasicDice implements Dice {
-	
-	private final int numberOfSides;
-	private final String name;
+@Entity
+@NoArgsConstructor
+public class BasicDice extends AbstractDice {
+
+	@Column(name = "NUMBER_OF_SIDES")
+	private int numberOfSides;
+
+	@Transient
 	private static final Random random = new Random();
+	
+	public BasicDice(String name, int numberOfSides) {
+		super(name);
+		this.numberOfSides = numberOfSides;
+	}
+	
 	
 	@Override
 	public int roll() {
@@ -28,7 +43,7 @@ public class BasicDice implements Dice {
 		return total;
 	}
 	
-	public static Dice build(int numberOfSides, String name) {
+	public static AbstractDice build(int numberOfSides, String name) {
 
 		if(numberOfSides<1) {
 			throw new IllegalArgumentException("number of sides must be greater than 0");
@@ -37,12 +52,8 @@ public class BasicDice implements Dice {
 			throw new IllegalArgumentException("name cannot be empty");
 		}
 
-		return new BasicDice(numberOfSides, name);
+		return new BasicDice(name, numberOfSides);
 	}
 
-	@Override
-	public String name() {
-		return name;
-	}
 
 }
