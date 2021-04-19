@@ -118,6 +118,26 @@
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.0.2</version>
+		  <configuration>
+			<archive>
+			  <manifest>
+				<addClasspath>true</addClasspath>
+				<classpathPrefix>lib/</classpathPrefix>
+				<mainClass>com.mkdevs.App</mainClass>
+			  </manifest>
+			</archive>
+		  </configuration>
+        </plugin>
+        <plugin>
+			<groupId>org.springframework.boot</groupId>
+          	<artifactId>spring-boot-maven-plugin</artifactId>
+			<executions>
+				<execution>
+					<configuration>
+						  <mainClass>com.mkdevs.App</mainClass>
+					</configuration>
+				</execution>
+			</executions>
         </plugin>
 		<plugin>
 			<groupId>org.codehaus.mojo</groupId>
