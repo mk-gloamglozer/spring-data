@@ -1,6 +1,7 @@
-package com.mkdevs.service;
+package com.mkdevs.stdinput;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -9,6 +10,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -16,8 +18,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.mkdevs.domain.Dice;
 import com.mkdevs.io.UserIO;
 import com.mkdevs.repository.DiceRepository;
-import com.mkdevs.service.DiceInputService;
-import com.mkdevs.service.DiceInputServiceStdInput;
+import com.mkdevs.stdinput.DiceInputService;
+import com.mkdevs.stdinput.DiceInputServiceStdInput;
 import com.mkdevs.utils.IOUtil.ErrorMessage;
 
 @ExtendWith(MockitoExtension.class)
@@ -39,8 +41,8 @@ public class DiceInputServiceStdInputTest {
 	public void whenDiceSelected_thenReturned() {
 		when(repo.findAll()).thenReturn(List.of(dice));
 		when(dice.name()).thenReturn("name");
-		when(inputer.getIntegerInput()).thenReturn(0);
-		when(inputer.isYesInput()).thenReturn(false);
+		when(inputer.getIntegerInput(anyString())).thenReturn(0);
+		when(inputer.isYesInput(anyString())).thenReturn(false);
 		
 		assertThat(inputService.makeDiceSelection()).contains(dice);
 	}
@@ -49,8 +51,8 @@ public class DiceInputServiceStdInputTest {
 	public void whenMultipleDiceSelected_thenAllReturned() {
 		when(repo.findAll()).thenReturn(List.of(dice));
 		when(dice.name()).thenReturn("name");
-		when(inputer.getIntegerInput()).thenReturn(0);
-		when(inputer.isYesInput()).thenReturn(true, false);
+		when(inputer.getIntegerInput(anyString())).thenReturn(0);
+		when(inputer.isYesInput(anyString())).thenReturn(true, false);
 		
 		assertThat(inputService.makeDiceSelection()).hasSize(2).contains(dice);
 		
@@ -61,8 +63,8 @@ public class DiceInputServiceStdInputTest {
 		
 		when(repo.findAll()).thenReturn(List.of(dice));
 		when(dice.name()).thenReturn("name");
-		when(inputer.getIntegerInput()).thenReturn(1,0);
-		when(inputer.isYesInput()).thenReturn(false);
+		when(inputer.getIntegerInput(anyString())).thenReturn(1,0);
+		when(inputer.isYesInput(anyString())).thenReturn(false);
 		
 		assertThat(inputService.makeDiceSelection()).hasSize(1).contains(dice);
 		

@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.core.env.Environment;
 
+import com.mkdevs.repository.DiceRepository;
+
 /**
  * Unit test for simple App.
  */
@@ -20,6 +22,9 @@ public class AppTest
 	
 	@Autowired
 	private Environment env;
+	
+	@Autowired
+	private DiceRepository dicerepo;
 
     @Test
     public void testContextLoads()
@@ -30,5 +35,10 @@ public class AppTest
     @Test
     public void testProfileIsJpa() {
     	assertThat(env.getActiveProfiles()).contains("jpa");
+    }
+    
+    @Test
+    public void testDiceRepoPopulated() {
+    	assertThat(dicerepo.findAll()).isNotEmpty();
     }
 }

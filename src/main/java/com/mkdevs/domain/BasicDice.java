@@ -11,6 +11,7 @@ import javax.persistence.Transient;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -34,14 +35,6 @@ public class BasicDice extends AbstractDice {
 		return random.nextInt(numberOfSides)+1;
 	}
 
-	@Override
-	public int roll(int times) {
-		int total = 0;
-		for (int i = 0; i < times; i++) {
-			total += this.roll();
-		}
-		return total;
-	}
 	
 	public static AbstractDice build(int numberOfSides, String name) {
 

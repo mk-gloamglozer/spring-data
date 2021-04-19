@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
@@ -41,9 +42,12 @@ public class DiceRepositoryJPABacked implements DiceRepository {
 		try {
 			return Optional.of(internalRepo.save((AbstractDice) dice));
 		}catch (ClassCastException e) {
-			throw new IllegalArgumentException("The supplied dice cannot be saved");
+			throw new DiceStorageException("The supplied dice cannot be saved as it cannot be cast as an abstact dice",e);
+		}catch (HibernateException e) {
+			throw new DiceStorageException("The supplied dice cannot be saved due to a hibernate error",e);
 		}
 	}
+	
 
 	@Override
 	public Optional<Dice> removeDice(Dice dice) {

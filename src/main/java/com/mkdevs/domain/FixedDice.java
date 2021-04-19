@@ -28,11 +28,6 @@ public class FixedDice extends AbstractDice{
 		return fixed;
 	}
 
-	@Override
-	public int roll(int times) {
-		return fixed * times;
-	}
-
 	
 	public static AbstractDice build(int fix, String name) {
 		if (fix <1) {

@@ -1,39 +1,37 @@
 package com.mkdevs.io;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 @Service
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserIOStdIO implements UserIO{
-	private Scanner input;
-
-	public UserIOStdIO() {
-		input = new Scanner(System.in);
-	}
+	static final String PROMPT_SUFFIX = ": ";
+	static final String YESNO_SUFFIX = " (y/n)";
 	
-	@Override
-	public Integer getIntegerInput() {
-		while(true) {
-			String inputString = input.nextLine();
-			try {
-				return Integer.parseInt(inputString);
-			} catch (NumberFormatException e) {
-				System.out.println("The input must be an integer");
-			}
-		}
-	}
-
-	@Override
-	public String getStringInput() {
-		return input.nextLine();
-	}
+	@Autowired
+	private ScannerWrapper input;
+	
+	@Autowired 
+	private PrintStream output;
 	
 
 	@Override
-	public boolean isYesInput() {
+	public boolean isYesInput(String prompt) {
+		this.write(prompt + yesNoSuffix() + promptEnd());
 		while(true) {
 			String inputString = input.nextLine();
+			newline();
 			switch(inputString){
 				case "y":
 				case "Y":
@@ -42,26 +40,60 @@ public class UserIOStdIO implements UserIO{
 				case "N":
 					return false;
 				default:
-					System.out.println("The response must be y/n");
+					this.writeln("The response must be y/n");
 			}
 		}
 	}
 
-	@Override
-	public void writeln(String text) {
-		System.out.println(text);
-		
-	}
 
 	@Override
-	public void write(String text) {
-		System.out.print(text);
+	public Integer getIntegerInput(String prompt) {
+		while(true) {
+			write(prompt + promptEnd());
+			String inputString = input.nextLine();
+			newline();
+			try {
+				return Integer.parseInt(inputString);
+			} catch (NumberFormatException e) {
+				writeln("The input must be an integer");
+			}
+		}
 	}
 
 	
 	@Override
-	protected void finalize() throws Throwable {
-		input.close();
+	public String getStringInput(String prompt) {
+		write(prompt + promptEnd());
+		String inString = input.nextLine();
+		newline();
+		return inString;
 	}
+
+	@Override
+	public void writeln(String text) {
+		output.println(text);
+		output.flush();
+	}
+	
+
+	@Override
+	public void write(String text) {
+		output.print(text);
+		output.flush();
+	}
+
+	
+	private void newline() {
+		writeln("");
+	}
+	
+	private String promptEnd() {
+		return PROMPT_SUFFIX;
+	}
+
+	private String yesNoSuffix() {
+		return YESNO_SUFFIX;
+	}
+
 	
 }

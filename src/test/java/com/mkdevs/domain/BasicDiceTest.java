@@ -31,15 +31,14 @@ public class BasicDiceTest {
 
 	}
 	
-	@Test 
-	public void testRepeatRollReturnsSumOfRolls() {
-		
-		Dice dice = BasicDice.build(1, "name");
-		assertThat(dice.roll(5)).isEqualTo(5);
-	}
 	
 	@Test
 	public void whenSidesLessThanOne_thenBuildThrowsIllegalArgument() {
 		assertThrows(IllegalArgumentException.class, () -> BasicDice.build(0, "name"));
+	}
+	
+	@Test
+	public void whenNameIsEmpty_thenBuildThrowsIllegalArgument() {
+		assertThrows(IllegalArgumentException.class, () -> BasicDice.build(5, ""));
 	}
 }

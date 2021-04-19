@@ -44,8 +44,7 @@ public class IOUtil {
 	public static <T extends IDable> T getIDableFomMap(Map<Integer,T> map, UserIO userIO) {
 		while(true) {
 			printMapToConsole(map, userIO);
-			userIO.writeln("Enter selection number: ");
-			Integer selection = userIO.getIntegerInput();
+			Integer selection = userIO.getIntegerInput("enter selection number");
 
 			if(map.containsKey(selection)) {
 				return map.get(selection);

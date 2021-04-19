@@ -2,6 +2,7 @@ package com.mkdevs.utils;
 
 import static com.mkdevs.utils.IOUtil.generateNumberMap;
 import static com.mkdevs.utils.IOUtil.getIDableFomMap;
+import static lombok.AccessLevel.PROTECTED;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,41 +10,36 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.mkdevs.IDable;
 import com.mkdevs.domain.Dice;
 import com.mkdevs.io.UserIO;
-import com.mkdevs.service.DiceInputService;
-import com.mkdevs.service.DiceModificationService;
+import com.mkdevs.service.DiceService;
+import com.mkdevs.stdinput.DiceInputService;
+import com.mkdevs.stdinput.InteractiveDiceModifier;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Service
-@AllArgsConstructor
 public class FunctionCaller {
-	
+
+	@Autowired
 	private DiceInputService diceService;
+	@Autowired
 	private DiceCalcUtil calcUtil;
+	@Autowired
 	private UserIO userio;
-	private DiceModificationService modService;
+	@Autowired
+	private InteractiveDiceModifier modService;
+
+	@Autowired @Getter(value = PROTECTED)
 	private List<FunctionOption> options;
 	
-	@Autowired
-	public FunctionCaller(DiceInputService diceService, DiceCalcUtil calcUtil, UserIO userio,
-			DiceModificationService modService) {
-		this.diceService = diceService;
-		this.calcUtil = calcUtil;
-		this.userio = userio;
-		this.modService = modService;
-		
-		//TODO move to its own store
-		options = new ArrayList<FunctionCaller.FunctionOption>();
-		options.add(new RollDice(diceService, calcUtil, userio));
-		options.add(new AddDice(modService, userio));
-		options.add(new RemoveDice(modService, userio));
-					
-	}
 	/**
 	 * asks the user what function to call and calls that 
 	 * function. 
@@ -61,19 +57,23 @@ public class FunctionCaller {
 		void doIt();
 	}
 	
+	@Component(value = "RollDice")
+	@NoArgsConstructor
 	@AllArgsConstructor
-	private class RollDice implements FunctionOption{
+	static class RollDice implements FunctionOption{
 		
-		DiceInputService diceService;
-		DiceCalcUtil calcUtil;
-		UserIO userIO;
+		@Autowired
+		private DiceInputService diceService;
+		@Autowired
+		private DiceCalcUtil calcUtil;
+		@Autowired
+		private UserIO userIO;
 		
 		@Override
 		public void doIt() {
 			Collection<Dice> diceCollection = diceService.makeDiceSelection();
 			Integer sum = calcUtil.getTotal(diceCollection);
 			userIO.writeln("You rolled: "+ sum.toString() +"!");
-			// TODO Auto-generated method stub
 			
 		}
 
@@ -84,11 +84,15 @@ public class FunctionCaller {
 		
 	}
 	
+	@Component(value = "AddDice")
+	@NoArgsConstructor
 	@AllArgsConstructor
-	private class AddDice implements FunctionOption{
+	static class AddDice implements FunctionOption{
 		
-		DiceModificationService modService;
-		UserIO userio;
+		@Autowired
+		private InteractiveDiceModifier modService;
+		@Autowired
+		private UserIO userio;
 		
 		@Override
 		public void doIt() {
@@ -102,11 +106,15 @@ public class FunctionCaller {
 		}
 	}
 	
+	@Component(value = "RemoveDice")
+	@NoArgsConstructor
 	@AllArgsConstructor
-	private class RemoveDice implements FunctionOption{
+	static class RemoveDice implements FunctionOption{
 		
-		DiceModificationService modService;
-		UserIO userio;
+		@Autowired
+		private InteractiveDiceModifier modService;
+		@Autowired
+		private UserIO userio;
 
 		@Override
 		public void doIt() {

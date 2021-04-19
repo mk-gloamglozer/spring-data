@@ -1,4 +1,4 @@
-package com.mkdevs.service;
+package com.mkdevs.stdinput;
 
 import static com.mkdevs.utils.IOUtil.*;
 
@@ -33,14 +33,13 @@ public class DiceInputServiceStdInput implements DiceInputService {
 	
 	@Override
 	public List<Dice> makeDiceSelection() {
-		inputer.writeln("Welcome! Please select a dice from the list");
+		inputer.writeln("Please select a dice from the list");
 		List<Dice> diceOutList = new ArrayList<Dice>();
 		Map<Integer, ? extends Dice> diceMap = generateNumberMap(diceRepo.findAll());
 
 		while(true) {
 			diceOutList.add(getIDableFomMap(diceMap, inputer));
-			inputer.writeln("Add another? (y/n): ");
-			if (!inputer.isYesInput()) {
+			if (!inputer.isYesInput("Add another?")) {
 				return diceOutList;
 			}
 			

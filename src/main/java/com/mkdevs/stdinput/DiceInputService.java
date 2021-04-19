@@ -1,4 +1,4 @@
-package com.mkdevs.service;
+package com.mkdevs.stdinput;
 
 import java.util.List;
 

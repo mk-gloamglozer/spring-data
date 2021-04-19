@@ -1,5 +1,7 @@
 package com.mkdevs;
 
+import static lombok.AccessLevel.PACKAGE;
+
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -8,30 +10,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import com.mkdevs.domain.BasicDiceFactory.BasicTemplate;
 import com.mkdevs.domain.DiceFactory;
+import com.mkdevs.domain.FixedDiceFactory.FixedDiceTemplate;
+import com.mkdevs.io.UserIO;
 import com.mkdevs.repository.DiceRepository;
 import com.mkdevs.utils.FunctionCaller;
 import com.mkdevs.utils.FunctionCaller.FunctionOption;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
+@NoArgsConstructor
+@AllArgsConstructor
 public class Runner implements CommandLineRunner {
 
 	
-	@Autowired DiceFactory factory;
-	@Autowired DiceRepository repo;
 	@Autowired FunctionCaller caller;
+	@Autowired UserIO userio;
 
-    @PostConstruct
-    public void initRepo() {
-    	List.of(
-    			factory.createDice("D6", "D6"),
-    			factory.createDice("FixedD20", "D20-fixed"),
-    			factory.createDice("D20", "D20"))
-			.forEach(repo::saveDice);
-    }
+	@Setter(PACKAGE)
+	private boolean isRunning = true;
     
     @PostConstruct
     public void addExitFunction() {
@@ -45,7 +49,7 @@ public class Runner implements CommandLineRunner {
 			
 			@Override
 			public void doIt() {
-				System.exit(0);
+				setRunning(false);
 			}
 		});
     }
@@ -53,13 +57,20 @@ public class Runner implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-    	while(true) {
+    	while(isRunning) {
     		try {
     			caller.askAndCall();
     		} catch (Exception e) {
-    			log.error("the program encountered a problem and has to close", e);
+    			log.error("something bad happened", e);
+    			userio.writeln("Woops, something went wrong.");
+    			userio.getStringInput("[Enter]");
 			}
     	}
 	}
+
+	
+	
+	
+	
 
 }

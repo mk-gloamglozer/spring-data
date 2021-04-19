@@ -29,7 +29,7 @@ public interface DiceRepository {
 	 * Add the dice to the repository and return the 
 	 * saved dice.  
 	 */
-	Optional<Dice> saveDice(Dice dice);
+	Optional<Dice> saveDice(Dice dice) throws DiceStorageException;
 
 	/**
 	 * Remove the dice if it exists otherwise return empty optional
