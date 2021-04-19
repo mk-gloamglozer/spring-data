@@ -1,4 +1,4 @@
-package com.mkdevs.stdinput;
+package com.mkdevs.interactiveInput;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.mkdevs.domain.BasicDiceFactory.BasicTemplate;
+import com.mkdevs.interactiveInput.BasicDiceAssembler;
 import com.mkdevs.io.UserIO;
 
 @ExtendWith(MockitoExtension.class)

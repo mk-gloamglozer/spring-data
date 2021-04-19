@@ -1,4 +1,4 @@
-package com.mkdevs.stdinput;
+package com.mkdevs.interactiveInput;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.mkdevs.domain.Dice;
 import com.mkdevs.domain.DiceFactory;
+import com.mkdevs.interactiveInput.AbstractDiceAssembler;
 
 @ExtendWith(MockitoExtension.class)
 public class AbstractDiceAssemblerTest {

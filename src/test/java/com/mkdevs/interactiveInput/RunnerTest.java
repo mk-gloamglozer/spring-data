@@ -1,4 +1,4 @@
-package com.mkdevs;
+package com.mkdevs.interactiveInput;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doAnswer;
@@ -20,9 +20,9 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
 
+import com.mkdevs.interactiveInput.Runner;
+import com.mkdevs.interactiveInput.FunctionCaller.FunctionOption;
 import com.mkdevs.io.UserIO;
-import com.mkdevs.utils.FunctionCaller;
-import com.mkdevs.utils.FunctionCaller.FunctionOption;
 
 @ExtendWith(MockitoExtension.class)
 public class RunnerTest {

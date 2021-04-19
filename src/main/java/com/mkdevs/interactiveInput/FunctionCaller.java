@@ -1,4 +1,4 @@
-package com.mkdevs.utils;
+package com.mkdevs.interactiveInput;
 
 import static com.mkdevs.utils.IOUtil.generateNumberMap;
 import static com.mkdevs.utils.IOUtil.getIDableFomMap;
@@ -17,8 +17,7 @@ import com.mkdevs.IDable;
 import com.mkdevs.domain.Dice;
 import com.mkdevs.io.UserIO;
 import com.mkdevs.service.DiceService;
-import com.mkdevs.stdinput.DiceInputService;
-import com.mkdevs.stdinput.InteractiveDiceModifier;
+import com.mkdevs.utils.DiceCalcUtil;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

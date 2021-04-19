@@ -1,4 +1,4 @@
-package com.mkdevs.stdinput;
+package com.mkdevs.interactiveInput;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,6 +13,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import com.mkdevs.interactiveInput.AssemblerStore;
+import com.mkdevs.interactiveInput.AssemblerStoreImpl;
+import com.mkdevs.interactiveInput.DiceAssembler;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest (classes = AssemblerStoreImplTest.Config.class)

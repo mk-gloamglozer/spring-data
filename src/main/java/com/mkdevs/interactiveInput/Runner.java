@@ -1,4 +1,4 @@
-package com.mkdevs;
+package com.mkdevs.interactiveInput;
 
 import static lombok.AccessLevel.PACKAGE;
 
@@ -13,10 +13,9 @@ import org.springframework.stereotype.Component;
 import com.mkdevs.domain.BasicDiceFactory.BasicTemplate;
 import com.mkdevs.domain.DiceFactory;
 import com.mkdevs.domain.FixedDiceFactory.FixedDiceTemplate;
+import com.mkdevs.interactiveInput.FunctionCaller.FunctionOption;
 import com.mkdevs.io.UserIO;
 import com.mkdevs.repository.DiceRepository;
-import com.mkdevs.utils.FunctionCaller;
-import com.mkdevs.utils.FunctionCaller.FunctionOption;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

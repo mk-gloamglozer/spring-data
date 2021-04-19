@@ -9,9 +9,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.mkdevs.interactiveInput.FunctionCaller;
+import com.mkdevs.interactiveInput.FunctionCaller.FunctionOption;
 import com.mkdevs.repository.DiceRepository;
-import com.mkdevs.utils.FunctionCaller;
-import com.mkdevs.utils.FunctionCaller.FunctionOption;
 
 import lombok.extern.slf4j.Slf4j;
 

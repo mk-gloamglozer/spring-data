@@ -1,4 +1,4 @@
-package com.mkdevs.stdinput;
+package com.mkdevs.interactiveInput;
 
 import com.mkdevs.domain.Dice;
 

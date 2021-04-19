@@ -1,4 +1,4 @@
-package com.mkdevs.stdinput;
+package com.mkdevs.interactiveInput;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -16,10 +16,10 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.mkdevs.domain.Dice;
+import com.mkdevs.interactiveInput.DiceInputService;
+import com.mkdevs.interactiveInput.DiceInputServiceStdInput;
 import com.mkdevs.io.UserIO;
 import com.mkdevs.repository.DiceRepository;
-import com.mkdevs.stdinput.DiceInputService;
-import com.mkdevs.stdinput.DiceInputServiceStdInput;
 import com.mkdevs.utils.IOUtil.ErrorMessage;
 
 @ExtendWith(MockitoExtension.class)

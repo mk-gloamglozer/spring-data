@@ -1,4 +1,4 @@
-package com.mkdevs.utils;
+package com.mkdevs.interactiveInput;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Answers.RETURNS_DEEP_STUBS;
@@ -32,13 +32,14 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.mkdevs.BeanConfig;
 import com.mkdevs.domain.Dice;
+import com.mkdevs.interactiveInput.DiceInputService;
+import com.mkdevs.interactiveInput.FunctionCaller;
+import com.mkdevs.utils.DiceCalcUtil;
+import com.mkdevs.interactiveInput.FunctionCaller.AddDice;
+import com.mkdevs.interactiveInput.FunctionCaller.FunctionOption;
+import com.mkdevs.interactiveInput.FunctionCaller.RemoveDice;
+import com.mkdevs.interactiveInput.FunctionCaller.RollDice;
 import com.mkdevs.io.UserIO;
-import com.mkdevs.stdinput.DiceInputService;
-import com.mkdevs.stdinput.InteractiveDiceModifier;
-import com.mkdevs.utils.FunctionCaller.AddDice;
-import com.mkdevs.utils.FunctionCaller.FunctionOption;
-import com.mkdevs.utils.FunctionCaller.RemoveDice;
-import com.mkdevs.utils.FunctionCaller.RollDice;
 
 public class FunctionCallerTest {
 	
@@ -208,7 +209,7 @@ public class FunctionCallerTest {
 	}
 
 	@Configuration
-	@ComponentScan(basePackageClasses = FunctionCaller.class)
+	@Import(value = {FunctionCaller.class})
 	public static class Config{
 	}
 
